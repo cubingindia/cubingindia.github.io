@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+
+<html lang="en">
+
+<head></head>
+
+<body>
+    <table id="table">
+    </table>
+    <script>
+        const xhttp = new XMLHttpRequest();
+        xhttp.onreadystatechange = function () {
+            if (this.readyState === 4 && this.status === 200) {
+                let response = JSON.parse(this.responseText)
+                for (i = 0; i < response.length; i++) {
+                    document.getElementById('table').innerHTML += `
+                        <tr>
+                        <td>` + response[i].name + `</td>
+                        <td>` + response[i].city_name + `</td>
+                        </tr>
+                    `
+                    console.log(response[i])
+                }
+            }
+        };
+        xhttp.open("GET", "http://ec2-18-188-176-57.us-east-2.compute.amazonaws.com:3000/api/competition-list", true);
+        xhttp.send();
+    </script>
+</body>
+
+</html>
