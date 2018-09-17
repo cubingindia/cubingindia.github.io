@@ -11,8 +11,20 @@
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.12/css/all.css" integrity="sha384-G0fIWCsCzJIMAVNQPfjH08cyYaUtMwjJwqiRKxxE/rx96Uroj1BtIQ6MLJuheaO9" crossorigin="anonymous">
 <script>
    $(document).ready(function (){
-       $.getJSON("http://ec2-18-188-176-57.us-east-2.compute.amazonaws.com:3000/api/competition-list",function(data){
+       $.getJSON("/api/competition-list",function(data){
            var competition_data = '';
+           console.log(data[1]);
+           
+
+           data.sort(function(a, b){
+    var dateA=new Date(a.day), dateB=new Date(b.day)
+    return dateA-dateB //sort by date ascending
+})
+
+
+
+
+
            $.each(data,function(key, value){
               competition_data += '<tr>';
               competition_data += '<td>'+value.name+'</td>';
@@ -81,7 +93,23 @@
                     competitions. Also register to the competitions that you are interested in through the links provided.<br><br>
                 To view more visit <a href="https://www.worldcubeassociation.org/competitions?utf8=%E2%9C%93&region=India&search=&state=present&year=all+years&from_date=&to_date=&delegate=&display=list" target="_blank">
                         WCA</a></div>
+                        <br>
+                        <br>
+
+
+
             </div>
+
+
+ <table class="table table-bordered table-striped" id="competition_table">
+                <tr>
+                    <th>Competition Name</th>
+                    <th>City Name</th>
+                    <th>Information</th>
+                </tr>
+            </table>
+
+
         </div>
 
         <!-- facebook page plugin -->
@@ -92,26 +120,12 @@
                 <div class="panel-body"><a href="LiveScores.html">Live Scores</a></div>
                 <div class="panel-body"><a href="regional.html">Regional</a></div>
                 <div class="panel-body"><a href="statistics.html">Statistics</a></div>
-                <div class="panel-heading">Upcoming Competitions</div>
-                <div class="panel-body"><a href="https://www.worldcubeassociation.org/competitions/IndianNationals2018" target ="_blank">Indian Nationals 2018</a></div>
-                <div class="panel-body"><a href="https://www.worldcubeassociation.org/competitions/VeniceoftheEastOpen2018" target ="_blank">Venice of the East Open 2018</a></div>
-                <div class="panel-body"><a href="https://www.worldcubeassociation.org/competitions/RaipurJuneCubeChallenge2018" target ="_blank">Raipur June Cube Challenge 2018</a></div>
+                
+               
             </div>
         </div>
     </div>
-    <div class="row">
-        <div class="col-sm-8">
-            <table class="table table-bordered table-striped" id="competition_table">
-                <tr>
-                    <th>Competition Name</th>
-                    <th>City Name</th>
-                    <th>Information</th>
-                </tr>
-            </table>
-        </div>
-    </div>
-
-</div>
+    
 <footer >                                                                                                        <!--footer -->
 
     <div class="container" bg-color="red">
