@@ -9,7 +9,22 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.12/css/all.css" integrity="sha384-G0fIWCsCzJIMAVNQPfjH08cyYaUtMwjJwqiRKxxE/rx96Uroj1BtIQ6MLJuheaO9" crossorigin="anonymous">
+<script>
+   $(document).ready(function (){
+       $.getJSON("http://ec2-18-188-176-57.us-east-2.compute.amazonaws.com:3000/api/competition-list",function(data){
+           var competition_data = '';
+           $.each(data,function(key, value){
+              competition_data += '<tr>';
+              competition_data += '<td>'+value.name+'</td>';
+              competition_data += '<td>'+value.city_name+'</td>';
+              competition_data += '<td>'+value.information+'</td>';
+              competition_data += '</tr>';
+           });
+           $('#competition_table').append(competition_data);
+       })
 
+   })
+    </script>
 
     <style>
         .foot{
@@ -68,6 +83,7 @@
                         WCA</a></div>
             </div>
         </div>
+
         <!-- facebook page plugin -->
         <div class="col-sm-4">
             <div class="panel panel-default">
@@ -81,6 +97,17 @@
                 <div class="panel-body"><a href="https://www.worldcubeassociation.org/competitions/VeniceoftheEastOpen2018" target ="_blank">Venice of the East Open 2018</a></div>
                 <div class="panel-body"><a href="https://www.worldcubeassociation.org/competitions/RaipurJuneCubeChallenge2018" target ="_blank">Raipur June Cube Challenge 2018</a></div>
             </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-sm-8">
+            <table class="table table-bordered table-striped" id="competition_table">
+                <tr>
+                    <th>Competition Name</th>
+                    <th>City Name</th>
+                    <th>Information</th>
+                </tr>
+            </table>
         </div>
     </div>
 
